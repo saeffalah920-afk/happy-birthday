@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Teze</title>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  background: radial-gradient(circle, #1a002a, #000);
+  font-family: Arial, sans-serif;
+}
+
+/* النص */
+.Happy__Birthday {
+  position: absolute;
+  width: 100%;
+  top: 35%;
+  text-align: center;
+  color: #fff;
+  font-size: 3.5em;
+  font-weight: bold;
+  text-shadow: 0 0 10px #fff, 0 0 20px #ff80ab, 0 0 40px #ff4081;
+  animation: glow 1.5s infinite alternate;
+}
+
+.Happy__Birthday::before {
+  content: "🎂 Happy Birthday Teze 🎉";
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #fff; }
+  to { text-shadow: 0 0 30px #ff80ab, 0 0 60px #ff4081; }
+}
+
+/* بالونات */
+.balloon {
+  position: absolute;
+  bottom: -100px;
+  width: 40px;
+  height: 50px;
+  border-radius: 50%;
+  animation: float 10s infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-110vh); }
+}
+
+/* زر تشغيل الصوت */
+button {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  font-size: 18px;
+  background: #ff4081;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+
+<div class="Happy__Birthday"></div>
+
+<!-- زر تشغيل -->
+<button onclick="playMusic()">🔊 تشغيل الموسيقى</button>
+
+<!-- موسيقى -->
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// تشغيل الصوت
+function playMusic() {
+  document.getElementById("music").play();
+}
+
+// بالونات
+for (let i = 0; i < 15; i++) {
+  let balloon = document.createElement("div");
+  balloon.className = "balloon";
+  balloon.style.left = Math.random() * 100 + "vw";
+  balloon.style.background = `hsl(${Math.random()*360}, 70%, 60%)`;
+  balloon.style.animationDuration = (5 + Math.random()*5) + "s";
+  document.body.appendChild(balloon);
+}
+
+// ألعاب نارية
+setInterval(() => {
+  let firework = document.createElement("div");
+  firework.style.position = "absolute";
+  firework.style.left = Math.random()*100 + "vw";
+  firework.style.top = Math.random()*50 + "vh";
+  firework.style.width = "10px";
+  firework.style.height = "10px";
+  firework.style.borderRadius = "50%";
+  firework.style.background = `hsl(${Math.random()*360},100%,60%)`;
+  firework.style.boxShadow = "0 0 20px 10px white";
+  document.body.appendChild(firework);
+
+  setTimeout(() => firework.remove(), 500);
+}, 300);
+</script>
+
+</body>
+</html>
